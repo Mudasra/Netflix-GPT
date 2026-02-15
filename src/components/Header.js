@@ -38,7 +38,7 @@ const Header = () => {
       }
     });
     return () => unsubscribe();
-  }, []);
+  }, [dispatch, navigate]);
 
   const handleGptSearchCLick = () => {
     dispatch(toggleGptSearchView());

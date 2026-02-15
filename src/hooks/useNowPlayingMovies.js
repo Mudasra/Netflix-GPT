@@ -1,10 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import { addNowPlayingMovies } from "../utils/movieSlice";
-import { useEffect } from "react";
+import { useEffect, useCallback } from "react";
 import { API_OPTIONS, SUPPORTED_LANGUAGES } from "../utils/constants";
 
 const useNowPlayingMovies = () => {
-  //  fetch data from tmdb api and update the store
   const dispatch = useDispatch();
   const langKey = useSelector((store) => store.config.lang);
   const langCode =
@@ -15,20 +14,21 @@ const useNowPlayingMovies = () => {
     (store) => store.movies.nowPlayingMovies
   );
 
-  const GetNowPlayingMovies = async () => {
+  const GetNowPlayingMovies = useCallback(async () => {
     const data = await fetch(
       `https://api.themoviedb.org/3/movie/now_playing?page=1&language=${langCode}`,
       API_OPTIONS
     );
 
     const json = await data.json();
-    // console.log(json.results[4]);
     dispatch(addNowPlayingMovies(json.results));
-  };
+  }, [dispatch, langCode]); 
 
   useEffect(() => {
-    !nowPlayingMovies && GetNowPlayingMovies();
-  }, [langCode]);
+    if (!nowPlayingMovies) {
+      GetNowPlayingMovies();
+    }
+  }, [nowPlayingMovies, GetNowPlayingMovies]); 
 };
 
 export default useNowPlayingMovies;
