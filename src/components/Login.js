@@ -75,7 +75,6 @@ const Login = () => {
       signInWithEmailAndPassword(auth, emailValue, passwordValue)
         .then((userCredential) => {
           // Signed in
-          // const user = userCredential.user;
           // console.log("user signed in", user);
           setFirebaseError("");
         })
@@ -164,10 +163,7 @@ const Login = () => {
         {firebaseError && (
           <p className="text-red-500 text-sm pt-4">{firebaseError}</p>
         )}
-        {/* {errorMessage && <p className="text-red-500 text-sm pt-4">{errorMessage}</p>} */}
-
-        {/* <p className="text-red-500 text-sm pt-4 ">{errorMessage}</p> */}
-
+    
         <label className="flex items-center mt-3 mb-10 space-x-2 cursor-pointer">
           <input type="checkbox" className="cursor-pointer h-4 w-4 " />
           <span className="text-white">Remember me</span>
