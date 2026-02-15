@@ -1,4 +1,3 @@
-// src/utils/genreMap.js
 export const genreMap = {
   28: "Action",
   12: "Adventure",
