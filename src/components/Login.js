@@ -13,7 +13,7 @@ import { addUser } from "../utils/userSlics";
 import { BG_IMG } from "../utils/constants";
 
 const Login = () => {
-  const [isSignInForm, setisSignInForm] = useState(true);
+  const [isSignInForm, setisSignInForm] = useState(false);
   const toggleSignInForm = () => {
     setisSignInForm(!isSignInForm);
   };
